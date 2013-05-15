@@ -1,0 +1,31 @@
+
+Structure
+=========
+
+ * main.qml: do not rename, the qml app launcher looks for this file in the installation directory, which is /usr/share/meego-app-im/ by default.
+ * QML files are in main directory.
+ * plugin: plugin containing MeeGo IM specific types and variables published.
+ * images: directory where to put images.
+ * telepathy-qml-lib: telepathy-related general purpose code
+ * telepathy-qml-plugin: QML plugin exposing the telepathy-qml-lib classes to declarative applications
+
+
+Build & Installation
+====================
+
+ * qmake
+ * make 
+ * make install
+
+
+Run
+===
+
+ meego-qml-launcher --opengl --fullscreen --app meego-app-im
+
+TODO
+====
+
+TODO QDeclarativeImageProvider caches images and there is no way to invalidate 
+     this cache, so when an account avatar is changed it doesn't get refreshed
+     See: http://bugreports.qt.nokia.com/browse/QTBUG-14900
