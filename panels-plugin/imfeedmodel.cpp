@@ -8,14 +8,14 @@
 
 #include "imfeedmodel.h"
 #include <actions.h>
-#include <TelepathyQt4/AvatarData>
-#include <TelepathyQt4/Channel>
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/Feature>
-#include <TelepathyQt4/PendingContacts>
-#include <TelepathyQt4/PendingReady>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/Types>
+#include <TelepathyQt/AvatarData>
+#include <TelepathyQt/Channel>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/Feature>
+#include <TelepathyQt/PendingContacts>
+#include <TelepathyQt/PendingReady>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/Types>
 
 #include <QDebug>
 
@@ -456,23 +456,23 @@ void IMFeedModel::onTextChannelReady(Tp::PendingOperation *op)
         return;
     }
 
-    Tp::TextChannelPtr textChannel = Tp::TextChannelPtr::dynamicCast(pr->object());
-    if (textChannel.isNull()) {
-        qDebug() << "IMFeedModel::onTextChannelReady: channel invalid";
-        return;
-    }
+//    Tp::TextChannelPtr textChannel = Tp::TextChannelPtr::dynamicCast(pr->object());
+//    if (textChannel.isNull()) {
+//        qDebug() << "IMFeedModel::onTextChannelReady: channel invalid";
+//        return;
+//    }
 
-    //flush the queue and enter all messages into the model
-    // display messages already in queue
-    qDebug("message queue: %d", textChannel->messageQueue().count());
-    foreach (Tp::ReceivedMessage message, textChannel->messageQueue()) {
-        onMessageReceived(message);
-    }
+//    //flush the queue and enter all messages into the model
+//    // display messages already in queue
+//    qDebug("message queue: %d", textChannel->messageQueue().count());
+//    foreach (Tp::ReceivedMessage message, textChannel->messageQueue()) {
+//        onMessageReceived(message);
+//    }
 
-    //connect to incoming messages
-    connect(textChannel.data(),
-                SIGNAL(messageReceived(Tp::ReceivedMessage)),
-                SLOT(onMessageReceived(Tp::ReceivedMessage)));
+//    //connect to incoming messages
+//    connect(textChannel.data(),
+//                SIGNAL(messageReceived(Tp::ReceivedMessage)),
+//                SLOT(onMessageReceived(Tp::ReceivedMessage))); //DV
 }
 
 void IMFeedModel::onCallChannelReady(Tp::PendingOperation *op)
@@ -487,13 +487,13 @@ void IMFeedModel::onCallChannelReady(Tp::PendingOperation *op)
         return;
     }
 
-    Tpy::CallChannelPtr callChannel = Tpy::CallChannelPtr::dynamicCast(pr->object());
-    if (callChannel.isNull()) {
-        qDebug() << "IMFeedModel::onCallChannelReady: channel invalid";
-        return;
-    }
+//    Tpy::CallChannelPtr callChannel = Tpy::CallChannelPtr::dynamicCast(pr->object());
+//    if (callChannel.isNull()) {
+//        qDebug() << "IMFeedModel::onCallChannelReady: channel invalid";
+//        return;
+//    }
 
-    createNewChannelItem(callChannel, CallType);
+//    createNewChannelItem(callChannel, CallType);//DV
 }
 
 void IMFeedModel::onFileTransferChannelReady(Tp::PendingOperation *op)
@@ -508,13 +508,13 @@ void IMFeedModel::onFileTransferChannelReady(Tp::PendingOperation *op)
         return;
     }
 
-    Tp::IncomingFileTransferChannelPtr fileTransferChannel = Tp::IncomingFileTransferChannelPtr::dynamicCast(pr->object());
-    if (fileTransferChannel.isNull()) {
-        qDebug() << "IMFeedModel::onFileTransferChannelReady: channel invalid";
-        return;
-    }
+//    Tp::IncomingFileTransferChannelPtr fileTransferChannel = Tp::IncomingFileTransferChannelPtr::dynamicCast(pr->object());
+//    if (fileTransferChannel.isNull()) {
+//        qDebug() << "IMFeedModel::onFileTransferChannelReady: channel invalid";
+//        return;
+//    }
 
-    createNewChannelItem(fileTransferChannel, FileTransferType);
+//    createNewChannelItem(fileTransferChannel, FileTransferType);//DV
 
 }
 

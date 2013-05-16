@@ -12,9 +12,9 @@
 #include "imgroupchatmodel.h"
 #include "settingshelper.h"
 
-#include <TelepathyQt4/AvatarData>
-#include <TelepathyQt4/Connection>
-#include <TelepathyQt4/ContactManager>
+#include <TelepathyQt/AvatarData>
+#include <TelepathyQt/Connection>
+#include <TelepathyQt/ContactManager>
 #include <TelepathyQt4Yell/Models/AccountsModel>
 #include <TelepathyQt4Yell/Models/ContactModelItem>
 

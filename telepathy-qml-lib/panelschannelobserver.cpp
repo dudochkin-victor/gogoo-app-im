@@ -8,10 +8,10 @@
 
 #include "panelschannelobserver.h"
 
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/Channel>
-#include <TelepathyQt4/ChannelClassSpecList>
-#include <TelepathyQt4/PendingReady>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/Channel>
+#include <TelepathyQt/ChannelClassSpecList>
+#include <TelepathyQt/PendingReady>
 
 PanelsChannelObserver::PanelsChannelObserver(const Tp::ChannelClassSpecList &channelFilter, bool shouldRecover)
     : AbstractClientObserver(channelFilter, shouldRecover)

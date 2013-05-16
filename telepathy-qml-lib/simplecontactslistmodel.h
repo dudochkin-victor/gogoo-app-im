@@ -9,7 +9,7 @@
 #ifndef SIMPLECONTACTSLISTMODEL_H
 #define SIMPLECONTACTSLISTMODEL_H
 
-#include <TelepathyQt4/Contact>
+#include <TelepathyQt/Contact>
 #include <TelepathyQt4Yell/Models/ContactModelItem>
 
 #include <QAbstractListModel>

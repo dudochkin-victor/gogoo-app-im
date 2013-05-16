@@ -10,9 +10,9 @@
 #define FILETRANSFERITEM_H
 
 #include <TelepathyQt4Yell/Models/EventItem>
-#include <TelepathyQt4/IncomingFileTransferChannel>
-#include <TelepathyQt4/OutgoingFileTransferChannel>
-#include <TelepathyQt4/Contact>
+#include <TelepathyQt/IncomingFileTransferChannel>
+#include <TelepathyQt/OutgoingFileTransferChannel>
+#include <TelepathyQt/Contact>
 
 #include "filetransferagent.h"
 

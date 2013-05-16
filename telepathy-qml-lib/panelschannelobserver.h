@@ -9,11 +9,11 @@
 #ifndef IMTEXTCHANNELOBSERVER_H
 #define IMTEXTCHANNELOBSERVER_H
 
-#include <TelepathyQt4/AbstractClientObserver>
-#include <TelepathyQt4/IncomingFileTransferChannel>
-#include <TelepathyQt4/PendingOperation>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/Types>
+#include <TelepathyQt/AbstractClientObserver>
+#include <TelepathyQt/IncomingFileTransferChannel>
+#include <TelepathyQt/PendingOperation>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/Types>
 
 #include <TelepathyQt4Yell/CallChannel>
 

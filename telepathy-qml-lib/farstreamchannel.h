@@ -17,11 +17,11 @@
 #include <QObject>
 #include <QtGstQmlSink/qmlpaintervideosurface.h>
 #include <QtGstQmlSink/qmlgstvideoitem.h>
-#include <TelepathyQt4/Constants>
-#include <TelepathyQt4/Types>
+#include <TelepathyQt/Constants>
+#include <TelepathyQt/Types>
 #include <TelepathyQt4Yell/Farstream/Channel>
 #include <telepathy-farstream/content.h>
-#include <telepathy-farstream/stream.h>
+//#include <telepathy-farstream/stream.h>
 
 class FarstreamChannel : public QObject
 {

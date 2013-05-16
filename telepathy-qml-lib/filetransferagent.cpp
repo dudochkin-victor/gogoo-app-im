@@ -7,11 +7,11 @@
  */
 
 #include "filetransferagent.h"
-#include <TelepathyQt4/PendingReady>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/ChannelRequest>
-#include <TelepathyQt4/PendingChannelRequest>
+#include <TelepathyQt/PendingReady>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/ChannelRequest>
+#include <TelepathyQt/PendingChannelRequest>
 #include <QDebug>
 
 FileTransferAgent::FileTransferAgent(const Tp::AccountPtr &account, const Tp::ContactPtr &contact, QObject *parent)

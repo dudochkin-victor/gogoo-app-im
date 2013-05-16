@@ -62,7 +62,8 @@ pkgconfig.files = telepathy-qml.pc
 
 PKGCONFIG += TelepathyQt4 TelepathyQt4Yell telepathy-farstream TelepathyQt4YellFarstream glib-2.0 dbus-1 \
              farsight2-0.10 telepathy-farstream gstreamer-0.10 qt-gst-qml-sink QtGLib-2.0 TelepathyLoggerQt4 telepathy-logger-0.2
-LIBS += -ltelepathy-qt4-yell-models -ltelepathy-qt4-yell-farstream -ltelepathy-logger-qt4-models -ltelepathy-logger-qt4
+LIBS += -ltelepathy-qt4-yell-models -ltelepathy-qt4-yell-farstream -ltelepathy-logger-qt4
+#-ltelepathy-logger-qt4-models
 
 #INSTALLS += target headers pkgconfig
 INSTALLS += target pkgconfig

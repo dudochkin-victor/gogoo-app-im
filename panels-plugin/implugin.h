@@ -17,7 +17,7 @@
 #include "../telepathy-qml-lib/imchannelapprover.h"
 
 #include <feedplugin.h>
-#include <TelepathyQt4/ClientRegistrar>
+#include <TelepathyQt/ClientRegistrar>
 
 #include <QMap>
 #include <QObject>

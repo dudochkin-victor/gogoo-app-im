@@ -1,6 +1,6 @@
 #include "serverauthagent.h"
-#include <TelepathyQt4/PendingVariant>
-#include <TelepathyQt4/AccountManager>
+#include <TelepathyQt/PendingVariant>
+#include <TelepathyQt/AccountManager>
 
 ServerAuthAgent::ServerAuthAgent(Tp::AccountPtr account, QObject *parent)
     : QObject(parent), mAccount(account), mWaitingForPassword(false)

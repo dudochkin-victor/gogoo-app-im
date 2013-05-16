@@ -9,10 +9,10 @@
 #ifndef IMCONVERSATIONMODEL_H
 #define IMCONVERSATIONMODEL_H
 
-#include <TelepathyLoggerQt4/Models/LoggerConversationModel>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/Types>
+//#include <TelepathyLoggerQt4/Models/LoggerConversationModel>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/Types>
 #include <TelepathyQt4Yell/Models/SessionConversationModel>
 #include <TelepathyQt4Yell/Models/EventItem>
 #include "mergedmodel.h"
@@ -115,7 +115,7 @@ private:
     Tpy::EventItem *mCallRunningItem;
     QStringList mContactsList;
     QStringList mBubbleColor;
-    Tpl::LoggerConversationModel *mLoggerConversationModel;
+    //Tpl::LoggerConversationModel *mLoggerConversationModel;
     Tpy::SessionConversationModel *mSessionConversationModel;
     Tp::ContactPtr mSelf;
     Tp::AccountPtr mAccount;

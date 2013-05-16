@@ -9,8 +9,8 @@
 #ifndef IMGROUPCHATMODELITEM_H
 #define IMGROUPCHATMODELITEM_H
 
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/TextChannel>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/TextChannel>
 
 class IMGroupChatModelItem : public QObject
 {

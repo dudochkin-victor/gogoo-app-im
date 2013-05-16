@@ -10,11 +10,11 @@
 #define TELEPATHYMANAGER_H
 
 #include <QObject>
-#include <TelepathyQt4/AccountManager>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/Connection>
-#include <TelepathyQt4/ConnectionManager>
-#include <TelepathyQt4/Types>
+#include <TelepathyQt/AccountManager>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/Connection>
+#include <TelepathyQt/ConnectionManager>
+#include <TelepathyQt/Types>
 #include "channelhandler.h"
 
 class TelepathyManager : public QObject

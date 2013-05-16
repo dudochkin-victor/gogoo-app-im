@@ -11,8 +11,8 @@
 #include "imaccountsmodel.h"
 
 #include <TelepathyQt4Yell/Models/AccountsModel>
-#include <TelepathyQt4/AvatarData>
-#include <TelepathyQt4/ReceivedMessage>
+#include <TelepathyQt/AvatarData>
+#include <TelepathyQt/ReceivedMessage>
 
 
 IMGroupChatModelItem::IMGroupChatModelItem(const QString &accountId, const Tp::TextChannelPtr &channel) :

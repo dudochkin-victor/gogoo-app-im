@@ -18,10 +18,10 @@
 #include "../telepathy-qml-lib/imchannelapprover.h"
 
 #include <TelepathyLoggerQt4/Init>
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/Connection>
-#include <TelepathyQt4/ChannelFactory>
-#include <TelepathyQt4/Debug>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/Connection>
+#include <TelepathyQt/ChannelFactory>
+#include <TelepathyQt/Debug>
 #include <TelepathyQt4Yell/Models/FlatModelProxy>
 #include <TelepathyQt4Yell/Types>
 #include <TelepathyQt4Yell/CallChannel>

@@ -15,13 +15,13 @@
 #include "../telepathy-qml-lib/panelschannelobserver.h"
 #include "../telepathy-qml-lib/notificationmanager.h"
 
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/Channel>
-#include <TelepathyQt4/IncomingFileTransferChannel>
-#include <TelepathyQt4/PendingOperation>
-#include <TelepathyQt4/ReceivedMessage>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/Types>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/Channel>
+#include <TelepathyQt/IncomingFileTransferChannel>
+#include <TelepathyQt/PendingOperation>
+#include <TelepathyQt/ReceivedMessage>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/Types>
 
 #include <TelepathyQt4Yell/CallChannel>
 

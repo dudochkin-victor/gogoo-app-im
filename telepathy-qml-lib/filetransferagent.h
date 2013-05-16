@@ -11,13 +11,13 @@
 
 #include "imconversationmodel.h"
 
-#include <TelepathyQt4/Types>
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/Connection>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/IncomingFileTransferChannel>
-#include <TelepathyQt4/OutgoingFileTransferChannel>
-#include <TelepathyQt4/ChannelRequest>
+#include <TelepathyQt/Types>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/Connection>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/IncomingFileTransferChannel>
+#include <TelepathyQt/OutgoingFileTransferChannel>
+#include <TelepathyQt/ChannelRequest>
 
 namespace Tp {
     class PendingMediaStreams;

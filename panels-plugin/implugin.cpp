@@ -15,10 +15,10 @@
 #include "imfeedmodelfilter.h"
 #include "imservmodel.h"
 
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/ChannelClassSpecList>
-#include <TelepathyQt4/Types>
-#include <TelepathyQt4/Debug>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/ChannelClassSpecList>
+#include <TelepathyQt/Types>
+#include <TelepathyQt/Debug>
 #include <TelepathyQt4Yell/CallChannel>
 #include <TelepathyQt4Yell/ChannelClassSpec>
 

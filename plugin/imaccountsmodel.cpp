@@ -9,32 +9,32 @@
 #include "imaccountsmodel.h"
 #include <TelepathyQt4Yell/Models/ContactModelItem>
 #include <TelepathyQt4Yell/Models/AbstractConversationModel>
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/PendingChannel>
-#include <TelepathyQt4/PendingContacts>
-#include <TelepathyQt4/PendingOperation>
-#include <TelepathyQt4/PendingReady>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/ReferencedHandles>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/PendingChannel>
+#include <TelepathyQt/PendingContacts>
+#include <TelepathyQt/PendingOperation>
+#include <TelepathyQt/PendingReady>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/ReferencedHandles>
 #include "../telepathy-qml-lib/chatagent.h"
 #include "../telepathy-qml-lib/callagent.h"
 #include "../telepathy-qml-lib/filetransferagent.h"
 #include "../telepathy-qml-lib/serverauthagent.h"
 #include "../telepathy-qml-lib/notificationmanager.h"
 
-#include <TelepathyLoggerQt4/Logger>
+//#include <TelepathyLoggerQt4/Logger>
 
-#include <TelepathyQt4/Client>
-#include <TelepathyQt4/PropertiesInterface>
+#include <TelepathyQt/Client>
+#include <TelepathyQt/PropertiesInterface>
 
 #include <QVariantMap>
 
 IMAccountsModel::IMAccountsModel(const Tp::AccountManagerPtr &am,
                                  QObject *parent)
  : Tpy::AccountsModel(am, parent),
-   mLogger(Tpl::Logger::create()),
+//   mLogger(Tpl::Logger::create()),
    mNotificationManager(0),
    mTelepathyManager(0)
 {
@@ -770,29 +770,29 @@ void IMAccountsModel::onTextChannelAvailable(const QString &accountId, Tp::TextC
     }
 
     if(channel->targetHandleType() == Tp::HandleTypeContact) {
-        Tp::ContactPtr contact = channel->connection()->contactManager()->lookupContactByHandle( channel->targetHandle() );
+//        Tp::ContactPtr contact = channel->connection()->contactManager()->lookupContactByHandle( channel->targetHandle() );
 
-        if (contact.isNull()) {
-            return;
-        }
+//        if (contact.isNull()) {
+//            return;
+//        }
 
-        // if contact is not known, add it
-        Tpy::ContactModelItem *contactItem = qobject_cast<Tpy::ContactModelItem *>(contactItemForId(accountId, contact->id()));
-        if(!contactItem) {
-            Tpy::AccountsModelItem *accountItem = qobject_cast<Tpy::AccountsModelItem *>(accountItemForId(accountId));
-            Tpy::ContactModelItem *newContactItem = new Tpy::ContactModelItem(contact);
-            accountItem->addChild(newContactItem);
-        }
+//        // if contact is not known, add it
+//        Tpy::ContactModelItem *contactItem = qobject_cast<Tpy::ContactModelItem *>(contactItemForId(accountId, contact->id()));
+//        if(!contactItem) {
+//            Tpy::AccountsModelItem *accountItem = qobject_cast<Tpy::AccountsModelItem *>(accountItemForId(accountId));
+//            Tpy::ContactModelItem *newContactItem = new Tpy::ContactModelItem(contact);
+//            accountItem->addChild(newContactItem);
+//        }
 
-        ChatAgent *agent = chatAgent(accountId, contact->id());
-        if (!agent) {
-            qWarning() << "IMAccountsModel::onTextChannelAvailable: agent could not be created for text available"
-                       << "accountId=" << accountId
-                       << "contactId=" << contact->id();
-            return;
-        }
+//        ChatAgent *agent = chatAgent(accountId, contact->id());
+//        if (!agent) {
+//            qWarning() << "IMAccountsModel::onTextChannelAvailable: agent could not be created for text available"
+//                       << "accountId=" << accountId
+//                       << "contactId=" << contact->id();
+//            return;
+//        }
 
-        agent->onTextChannelAvailable(channel);
+//        agent->onTextChannelAvailable(channel);//DV
     } else if(channel->targetHandleType() == Tp::HandleTypeGroup
               || channel->targetHandleType() == Tp::HandleTypeRoom) {
         ChatAgent *agent = chatAgent(accountId, channel);
@@ -994,32 +994,32 @@ void IMAccountsModel::onCallChannelAvailable(const QString &accountId, Tpy::Call
         return;
     }
 
-    Tp::ContactPtr contact = channel->connection()->contactManager()->lookupContactByHandle( channel->targetHandle() );
-    if (contact.isNull()) {
-        return;
-    }
+//    Tp::ContactPtr contact = channel->connection()->contactManager()->lookupContactByHandle( channel->targetHandle() );
+//    if (contact.isNull()) {
+//        return;
+//    }
 
-    // if contact is not known, add it
-    Tpy::ContactModelItem *contactItem = qobject_cast<Tpy::ContactModelItem *>(contactItemForId(accountId, contact->id()));
-    if(!contactItem) {
-        Tpy::AccountsModelItem *accountItem = qobject_cast<Tpy::AccountsModelItem *>(accountItemForId(accountId));
-        Tpy::ContactModelItem *newContactItem = new Tpy::ContactModelItem(contact);
-        accountItem->addChild(newContactItem);
-    }
+//    // if contact is not known, add it
+//    Tpy::ContactModelItem *contactItem = qobject_cast<Tpy::ContactModelItem *>(contactItemForId(accountId, contact->id()));
+//    if(!contactItem) {
+//        Tpy::AccountsModelItem *accountItem = qobject_cast<Tpy::AccountsModelItem *>(accountItemForId(accountId));
+//        Tpy::ContactModelItem *newContactItem = new Tpy::ContactModelItem(contact);
+//        accountItem->addChild(newContactItem);
+//    }
 
-    CallAgent *agent = callAgent(accountId, contact->id());
-    if (!agent) {
-        qWarning() << "IMAccountsModel::onCallChannelAvailable: agent could not be created for call channel available"
-                   << "accountId=" << accountId
-                   << "contactId=" << contact->id();
-        return;
-    }
+//    CallAgent *agent = callAgent(accountId, contact->id());
+//    if (!agent) {
+//        qWarning() << "IMAccountsModel::onCallChannelAvailable: agent could not be created for call channel available"
+//                   << "accountId=" << accountId
+//                   << "contactId=" << contact->id();
+//        return;
+//    }
 
-    qDebug() << "IMAccountsModel::onCallChannelAvailable: forwarding to agent channel=" << channel.data();
-    agent->onChannelAvailable(channel);
-    if (!channel->isRequested()) {
-        emit incomingCallAvailable(accountId, contact->id());
-    }
+//    qDebug() << "IMAccountsModel::onCallChannelAvailable: forwarding to agent channel=" << channel.data();
+//    agent->onChannelAvailable(channel);
+//    if (!channel->isRequested()) {
+//        emit incomingCallAvailable(accountId, contact->id());
+//    }//DV
 }
 
 void IMAccountsModel::onIncomingFileTransferChannelAvailable(const QString &accountId, Tp::IncomingFileTransferChannelPtr channel)
@@ -1036,22 +1036,22 @@ void IMAccountsModel::onIncomingFileTransferChannelAvailable(const QString &acco
         return;
     }
 
-    Tp::ContactPtr contact = channel->connection()->contactManager()->lookupContactByHandle( channel->targetHandle() );
-    if (contact.isNull()) {
-        return;
-    }
+//    Tp::ContactPtr contact = channel->connection()->contactManager()->lookupContactByHandle( channel->targetHandle() );
+//    if (contact.isNull()) {
+//        return;
+//    }
 
-    FileTransferAgent *agent = fileTransferAgent(accountId, contact->id(), true);
-    if (!agent) {
-        qWarning() << "IMAccountsModel::onIncomingFileTransferChannelAvailable: agent could not be created for file transfer channel available"
-                   << "accountId=" << accountId
-                   << "contactId=" << contact->id();
-        return;
-    }
+//    FileTransferAgent *agent = fileTransferAgent(accountId, contact->id(), true);
+//    if (!agent) {
+//        qWarning() << "IMAccountsModel::onIncomingFileTransferChannelAvailable: agent could not be created for file transfer channel available"
+//                   << "accountId=" << accountId
+//                   << "contactId=" << contact->id();
+//        return;
+//    }
 
-    agent->onIncomingTransferAvailable(channel);
+//    agent->onIncomingTransferAvailable(channel);
 
-    emit incomingFileTransferAvailable(accountId, contact->id());
+//    emit incomingFileTransferAvailable(accountId, contact->id());//DV
 }
 
 void IMAccountsModel::onOutgoingFileTransferChannelAvailable(const QString &accountId,
@@ -1070,21 +1070,21 @@ void IMAccountsModel::onOutgoingFileTransferChannelAvailable(const QString &acco
         return;
     }
 
-    Tp::ContactPtr contact = channel->connection()->contactManager()->lookupContactByHandle( channel->targetHandle() );
-    if (contact.isNull()) {
-        return;
-    }
+//    Tp::ContactPtr contact = channel->connection()->contactManager()->lookupContactByHandle( channel->targetHandle() );
+//    if (contact.isNull()) {
+//        return;
+//    }
 
-    FileTransferAgent *agent = fileTransferAgent(accountId, contact->id(), true);
-    if (!agent) {
-        qWarning() << "IMAccountsModel::onOutgoingFileTransferChannelAvailable: agent could not be created for file transfer channel available"
-                   << "accountId=" << accountId
-                   << "contactId=" << contact->id();
-        return;
-    }
+//    FileTransferAgent *agent = fileTransferAgent(accountId, contact->id(), true);
+//    if (!agent) {
+//        qWarning() << "IMAccountsModel::onOutgoingFileTransferChannelAvailable: agent could not be created for file transfer channel available"
+//                   << "accountId=" << accountId
+//                   << "contactId=" << contact->id();
+//        return;
+//    }
 
-    // give the channel back to the agent
-    agent->onOutgoingTransferAvailable(channel, request);
+//    // give the channel back to the agent
+//    agent->onOutgoingTransferAvailable(channel, request);//DV
 }
 
 void IMAccountsModel::onServerAuthChannelAvailable(const QString &accountId, Tp::ChannelPtr channel)
@@ -1326,8 +1326,8 @@ void IMAccountsModel::blockContact(const QString &accountId, const QString &cont
         Tp::ContactPtr contact = contactItem->contact();
         if(!contact->isBlocked()) {
             qDebug() << "IMAccountsModel::blockContact: blocking contact";
-            connect(contact->block(true), SIGNAL(finished(Tp::PendingOperation*)),
-                    SLOT(onBlockedContact(Tp::PendingOperation*)));
+//            connect(contact->block(true), SIGNAL(finished(Tp::PendingOperation*)),
+//                    SLOT(onBlockedContact(Tp::PendingOperation*)));//DV
         }
     }
 }
@@ -1338,8 +1338,8 @@ void IMAccountsModel::unblockContact(const QString &accountId, const QString &co
     if(contactItem) {
         Tp::ContactPtr contact = contactItem->contact();
         if(contact->isBlocked()) {
-            connect(contact->block(false), SIGNAL(finished(Tp::PendingOperation*)),
-                    SLOT(onUnblockedContact(Tp::PendingOperation*)));
+//            connect(contact->block(false), SIGNAL(finished(Tp::PendingOperation*)),
+//                    SLOT(onUnblockedContact(Tp::PendingOperation*)));//DV
         }
     }
 }
@@ -1539,20 +1539,20 @@ bool IMAccountsModel::openedChatByAccount(const QString &accountId) const
 
 void IMAccountsModel::clearHistory()
 {
-    mLogger->clearLog();
-    foreach (ChatAgent *agent, mChatAgents) {
-        agent->model()->clearLog();
-    }
+//    mLogger->clearLog();
+//    foreach (ChatAgent *agent, mChatAgents) {
+//        agent->model()->clearLog();
+//    }//DV
 }
 
 void IMAccountsModel::clearAccountHistory(const QString &accountId)
 {
     Tpy::AccountsModelItem* accountItem = qobject_cast<Tpy::AccountsModelItem*>(accountItemForId(accountId));
     if (accountItem) {
-        mLogger->clearAccount(accountItem->account());
-        foreach(ChatAgent *agent, chatAgentsByAccount(accountId)) {
-            agent->model()->clearLog();
-        }
+//        mLogger->clearAccount(accountItem->account());
+//        foreach(ChatAgent *agent, chatAgentsByAccount(accountId)) {
+//            agent->model()->clearLog();
+//        }//DV
     }
 }
 
@@ -1560,12 +1560,12 @@ void IMAccountsModel::clearContactHistory(const QString &accountId, const QStrin
 {
     Tpy::AccountsModelItem* accountItem = qobject_cast<Tpy::AccountsModelItem*>(accountItemForId(accountId));
     if (accountItem) {
-        Tpl::LoggerPtr logger = Tpl::Logger::create();
-        mLogger->clearContact(accountItem->account(), contactId);
-        ChatAgent *chatAgent = chatAgentByKey(accountId, contactId);
-        if(chatAgent) {
-            chatAgent->model()->clearLog();
-        }
+//        Tpl::LoggerPtr logger = Tpl::Logger::create();
+//        mLogger->clearContact(accountItem->account(), contactId);
+//        ChatAgent *chatAgent = chatAgentByKey(accountId, contactId);
+//        if(chatAgent) {
+//            chatAgent->model()->clearLog();
+//        }//DV
     }
 
 }
@@ -1577,9 +1577,9 @@ void IMAccountsModel::clearGroupChatHistory(const QString &accountId, const QStr
     if (accountItem) {
         ChatAgent *chatAgent = chatAgentByKey(accountId, channelPath);
         if(chatAgent) {
-            QString roomName = chatAgent->textChannel()->immutableProperties().value(TP_QT4_IFACE_CHANNEL + QLatin1String(".TargetID")).toString();
-            mLogger->clearRoom(accountItem->account(), roomName);
-            chatAgent->model()->clearLog();
+            QString roomName = chatAgent->textChannel()->immutableProperties().value(TP_QT_IFACE_CHANNEL + QLatin1String(".TargetID")).toString();
+//            mLogger->clearRoom(accountItem->account(), roomName);
+//            chatAgent->model()->clearLog();//DV
         }
     }
 }

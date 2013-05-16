@@ -3,7 +3,7 @@ TARGET = im_panels_plugin
 TEMPLATE = lib
 QT += declarative dbus network
 CONFIG += qt plugin link_pkgconfig
-PKGCONFIG += TelepathyQt4 meego-ux-content
+PKGCONFIG += TelepathyQt4 TelepathyQt4Yell meego-ux-content
 
 # use pkg-config paths for include in both g++ and moc
 INCLUDEPATH += $$system(pkg-config --cflags meego-ux-content \

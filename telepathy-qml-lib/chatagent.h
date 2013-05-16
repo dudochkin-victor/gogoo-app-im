@@ -13,11 +13,11 @@
 
 #include "simplecontactslistmodel.h"
 
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/Connection>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/Types>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/Connection>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/Types>
 
 namespace Tp {
     class PendingMediaStreams;

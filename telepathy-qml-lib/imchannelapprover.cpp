@@ -8,8 +8,8 @@
 
 #include "imchannelapprover.h"
 
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/PendingReady>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/PendingReady>
 #include <TelepathyQt4Yell/ChannelClassSpec>
 
 IMChannelApprover::IMChannelApprover()
@@ -116,11 +116,11 @@ Tp::ChannelClassSpecList IMChannelApprover::channelFilters() const
     specList << Tp::ChannelClassSpec::outgoingFileTransfer();
 
     QMap<QString, QDBusVariant> filter;
-    filter.insert(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL ".ChannelType"),
-                  QDBusVariant(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION)));
-    filter.insert(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION ".AuthenticationMethod"),
-                  QDBusVariant(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL_INTERFACE_SASL_AUTHENTICATION)));
-    filter.insert(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL ".TargetHandleType"),
+    filter.insert(TP_QT_IFACE_CHANNEL + QString::fromLatin1(".ChannelType"),
+                  QDBusVariant(TP_QT_IFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION));
+    filter.insert(TP_QT_IFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION + QString::fromLatin1(".AuthenticationMethod"),
+                  QDBusVariant(TP_QT_IFACE_CHANNEL_INTERFACE_SASL_AUTHENTICATION));
+    filter.insert(TP_QT_IFACE_CHANNEL + QString::fromLatin1(".TargetHandleType"),
                   QDBusVariant(Tp::HandleTypeNone));
     specList << Tp::ChannelClassSpec(Tp::ChannelClass(filter));
 
@@ -154,7 +154,8 @@ void IMChannelApprover::onTextChannelReady(Tp::PendingOperation *op)
         return;
     }
 
-    Tp::TextChannelPtr textChannel = Tp::TextChannelPtr::dynamicCast(pr->object());
+    Tp::TextChannelPtr textChannel = /*Tp::TextChannelPtr::dynamicCast(pr->object());*/
+            Tp::TextChannelPtr(qobject_cast<Tp::TextChannel *>(op));
     if (textChannel.isNull()) {
         qDebug() << "IMChannelApprover::onTextChannelReady: stream invalid";
         return;
@@ -176,7 +177,8 @@ void IMChannelApprover::onCallChannelReady(Tp::PendingOperation *op)
         return;
     }
 
-    Tpy::CallChannelPtr callChannel = Tpy::CallChannelPtr::dynamicCast(pr->object());
+    Tpy::CallChannelPtr callChannel = /*Tpy::CallChannelPtr::dynamicCast(pr->object());*/
+            Tpy::CallChannelPtr(qobject_cast<Tpy::CallChannel *>(pr));
     if (callChannel.isNull()) {
         qDebug() << "IMChannelApprover::onCallChannelReady: channel invalid";
         return;
@@ -200,7 +202,8 @@ void IMChannelApprover::onFileTransferChannelReady(Tp::PendingOperation *op)
         return;
     }
 
-    Tp::IncomingFileTransferChannelPtr fileTransferChannel = Tp::IncomingFileTransferChannelPtr::dynamicCast(pr->object());
+    Tp::IncomingFileTransferChannelPtr fileTransferChannel = /*Tp::IncomingFileTransferChannelPtr::dynamicCast(pr->object());*/
+            Tp::IncomingFileTransferChannelPtr(qobject_cast<Tp::IncomingFileTransferChannel *>(pr));
     if (fileTransferChannel.isNull()) {
         qDebug() << "IMChannelApprover::onFileTransferChannelReady: stream invalid";
         return;

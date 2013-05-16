@@ -9,13 +9,13 @@
 #ifndef IMACCOUNTSMODEL_H
 #define IMACCOUNTSMODEL_H
 
-#include <TelepathyQt4/Types>
+#include <TelepathyQt/Types>
 #include <TelepathyQt4Yell/Models/AccountsModel>
 #include <TelepathyQt4Yell/Models/ContactModelItem>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/IncomingFileTransferChannel>
-#include <TelepathyQt4/OutgoingFileTransferChannel>
-#include <TelepathyQt4/ChannelRequest>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/IncomingFileTransferChannel>
+#include <TelepathyQt/OutgoingFileTransferChannel>
+#include <TelepathyQt/ChannelRequest>
 #include <TelepathyLoggerQt4/Types>
 #include <TelepathyQt4Yell/CallChannel>
 #include <QMap>
@@ -144,7 +144,7 @@ private Q_SLOTS:
     void onConnectionReady(Tp::ConnectionPtr connection);
 
 private:
-    Tpl::LoggerPtr mLogger;
+    //Tpl::LoggerPtr mLogger;
     ChatAgentHash mChatAgents;
     CallAgentHash mCallAgents;
     FileTransferAgentHash mFileTransferAgents;

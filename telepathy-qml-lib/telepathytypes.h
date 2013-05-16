@@ -10,8 +10,8 @@
 #define TELEPATHYTYPES_H
 
 #include <QObject>
-#include <TelepathyQt4/Constants>
-#include <TelepathyQt4/Contact>
+#include <TelepathyQt/Constants>
+#include <TelepathyQt/Contact>
 #include <TelepathyQt4Yell/Constants>
 
 class TelepathyTypes : public QObject

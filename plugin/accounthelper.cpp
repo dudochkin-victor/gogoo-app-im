@@ -8,12 +8,12 @@
 
 #include "accounthelper.h"
 #include "imaccountsmodel.h"
-#include <TelepathyQt4/PendingOperation>
-#include <TelepathyQt4/PendingReady>
-#include <TelepathyQt4/PendingAccount>
-#include <TelepathyQt4/PendingStringList>
-#include <TelepathyQt4/Types>
-#include <TelepathyQt4/ProtocolParameter>
+#include <TelepathyQt/PendingOperation>
+#include <TelepathyQt/PendingReady>
+#include <TelepathyQt/PendingAccount>
+#include <TelepathyQt/PendingStringList>
+#include <TelepathyQt/Types>
+#include <TelepathyQt/ProtocolParameter>
 
 #include <TelepathyQt4Yell/Models/AccountsModelItem>
 #include <QUrl>

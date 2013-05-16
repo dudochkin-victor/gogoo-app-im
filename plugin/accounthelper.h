@@ -12,7 +12,7 @@
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
-#include <TelepathyQt4/AccountManager>
+#include <TelepathyQt/AccountManager>
 
 class IMAccountsModel;
 

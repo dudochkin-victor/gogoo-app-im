@@ -9,16 +9,16 @@
 #include <telepathy-farstream/telepathy-farstream.h>
 #include "telepathymanager.h"
 
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/ChannelClassSpecList>
-#include <TelepathyQt4/ClientRegistrar>
-#include <TelepathyQt4/Connection>
-#include <TelepathyQt4/ConnectionCapabilities>
-#include <TelepathyQt4/ConnectionFactory>
-#include <TelepathyQt4/ContactFactory>
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/PendingContacts>
-#include <TelepathyQt4/PendingReady>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/ChannelClassSpecList>
+#include <TelepathyQt/ClientRegistrar>
+#include <TelepathyQt/Connection>
+#include <TelepathyQt/ConnectionCapabilities>
+#include <TelepathyQt/ConnectionFactory>
+#include <TelepathyQt/ContactFactory>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/PendingContacts>
+#include <TelepathyQt/PendingReady>
 #include <TelepathyQt4Yell/ChannelFactory>
 #include <glib-object.h>
 #include <gst/gst.h>
@@ -48,7 +48,7 @@ TelepathyManager::TelepathyManager(bool fullStart)
                         << Tp::Connection::FeatureRosterGroups;
                         //<< Tp::Connection::FeatureAccountBalance;
 
-#if 1
+#if 0
     // remove following code once tp-qt4-yell is merged into tp-qt4
     tf_init();
 

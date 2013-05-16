@@ -7,8 +7,8 @@
  */
 
 #include "addcontacthelper.h"
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/PendingContacts>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/PendingContacts>
 
 AddContactHelper::AddContactHelper(QObject *parent) :
     QObject(parent),
@@ -109,7 +109,7 @@ void AddContactHelper::onPendingContactsFinished(Tp::PendingOperation *op)
     }
 
     if (pendingContacts->isError()) {
-        if (op->errorName() == TELEPATHY_ERROR_NETWORK_ERROR) {
+        if (op->errorName() == TP_QT_ERROR_NETWORK_ERROR) {
             setError("A network error occurred. Please check your connection and try again.", StateNoNetwork);
         } else {
             setError(tr("An error occurred while trying to complete your request. Please try again."));
@@ -157,7 +157,7 @@ void AddContactHelper::onPresenceSubscriptionFinished(Tp::PendingOperation *op)
     qDebug() << "AddContactHelper::onPresenceSubscriptionFinished";
 
     if (!op || op->isError()) {
-        if (op->errorName() == TELEPATHY_ERROR_NETWORK_ERROR) {
+        if (op->errorName() == TP_QT_ERROR_NETWORK_ERROR) {
             setError("A network error occurred. Please check your connection and try again.", StateNoNetwork);
         } else {
             setError(tr("An error occurred while trying to complete your request. Please try again."));

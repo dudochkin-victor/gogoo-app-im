@@ -8,17 +8,17 @@
 
 #include "channelhandler.h"
 
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/IncomingFileTransferChannel>
-#include <TelepathyQt4/OutgoingFileTransferChannel>
-#include <TelepathyQt4/Types>
-#include <TelepathyQt4/Constants>
-#include <TelepathyQt4/MethodInvocationContext>
-#include <TelepathyQt4/ChannelDispatchOperation>
-#include <TelepathyQt4/ChannelClassSpecList>
-#include <TelepathyQt4/PendingReady>
-#include <TelepathyQt4/ChannelRequest>
-#include <TelepathyQt4/ChannelInterfaceSASLAuthenticationInterface>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/IncomingFileTransferChannel>
+#include <TelepathyQt/OutgoingFileTransferChannel>
+#include <TelepathyQt/Types>
+#include <TelepathyQt/Constants>
+#include <TelepathyQt/MethodInvocationContext>
+#include <TelepathyQt/ChannelDispatchOperation>
+#include <TelepathyQt/ChannelClassSpecList>
+#include <TelepathyQt/PendingReady>
+#include <TelepathyQt/ChannelRequest>
+#include <TelepathyQt/ChannelInterfaceSASLAuthenticationInterface>
 #include <TelepathyQt4Yell/ChannelClassSpec>
 
 ChannelHandler::ChannelHandler(QObject *parent) :
@@ -55,7 +55,7 @@ void ChannelHandler::handleChannels(const Tp::MethodInvocationContextPtr<> &cont
 
         qDebug() << "ChannelHandler::handleChannels: checking channel=" << channel.data();
 
-        if (channel->channelType() == TELEPATHY_INTERFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION) {
+        if (channel->channelType() == TP_QT_IFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION) {
             emit serverAuthChannelAvailable(account->uniqueIdentifier(), channel);
             continue;
         }
@@ -161,16 +161,16 @@ Tp::ChannelClassSpecList ChannelHandler::channelFilters()
     specList << Tp::ChannelClassSpec::outgoingFileTransfer();
 
     QMap<QString, QDBusVariant> filter;
-    filter.insert(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL ".ChannelType"),
-                  QDBusVariant(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION)));
-    filter.insert(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION ".AuthenticationMethod"),
-                  QDBusVariant(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL_INTERFACE_SASL_AUTHENTICATION)));
-    filter.insert(QString::fromLatin1(TELEPATHY_INTERFACE_CHANNEL ".TargetHandleType"),
+    filter.insert(TP_QT_IFACE_CHANNEL + QString::fromLatin1(".ChannelType"),
+                  QDBusVariant(TP_QT_IFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION));
+    filter.insert(TP_QT_IFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION + QString::fromLatin1(".AuthenticationMethod"),
+                  QDBusVariant(TP_QT_IFACE_CHANNEL_INTERFACE_SASL_AUTHENTICATION));
+    filter.insert(TP_QT_IFACE_CHANNEL + QString::fromLatin1(".TargetHandleType"),
                   QDBusVariant(Tp::HandleTypeNone));
     specList << Tp::ChannelClassSpec(Tp::ChannelClass(filter));
 
-    qDebug() << "Appending filter for type" << TELEPATHY_INTERFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION;
-    qDebug() << TELEPATHY_INTERFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION ".AuthenticationMethod = " << TELEPATHY_INTERFACE_CHANNEL_INTERFACE_SASL_AUTHENTICATION;
+    qDebug() << "Appending filter for type" << TP_QT_IFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION;
+    qDebug() << TP_QT_IFACE_CHANNEL_TYPE_SERVER_AUTHENTICATION + ".AuthenticationMethod = " << TP_QT_IFACE_CHANNEL_INTERFACE_SASL_AUTHENTICATION;
     return specList;
 }
 
@@ -186,7 +186,8 @@ void ChannelHandler::onCallChannelReady(Tp::PendingOperation *op)
         return;
     }
 
-    Tpy::CallChannelPtr callChannel = Tpy::CallChannelPtr::dynamicCast(pr->object());
+    Tpy::CallChannelPtr callChannel = /*Tpy::CallChannelPtr::dynamicCast(pr->object());*/
+            Tpy::CallChannelPtr(qobject_cast<Tpy::CallChannel *>(pr));
     if (callChannel.isNull()) {
         qDebug() << "ChannelHandler::onCallChannelReady: call channel invalid";
         return;
@@ -210,7 +211,8 @@ void ChannelHandler::onTextChannelReady(Tp::PendingOperation *op)
         return;
     }
 
-    Tp::TextChannelPtr textChannel = Tp::TextChannelPtr::dynamicCast(pr->object());
+    Tp::TextChannelPtr textChannel = /*Tp::TextChannelPtr::dynamicCast(pr->object());*/
+            Tp::TextChannelPtr(qobject_cast<Tp::TextChannel *>(pr));
     if (textChannel.isNull()) {
         qDebug() << "ChannelHandler::onTextChannelReady: stream invalid";
         return;
@@ -232,7 +234,8 @@ void ChannelHandler::onIncomingFileTransferChannelReady(Tp::PendingOperation *op
         return;
     }
 
-    Tp::IncomingFileTransferChannelPtr fileTransferChannel = Tp::IncomingFileTransferChannelPtr::dynamicCast(pr->object());
+    Tp::IncomingFileTransferChannelPtr fileTransferChannel = /*Tp::IncomingFileTransferChannelPtr::dynamicCast(pr->object());*/
+            Tp::IncomingFileTransferChannelPtr(qobject_cast<Tp::IncomingFileTransferChannel *>(pr));
     if (fileTransferChannel.isNull()) {
         qDebug() << "ChannelHandler::onIncomingFileTransferChannelReady: channel invalid";
         return;
@@ -256,7 +259,8 @@ void ChannelHandler::onOutgoingFileTransferChannelReady(Tp::PendingOperation *op
         return;
     }
 
-    Tp::OutgoingFileTransferChannelPtr fileTransferChannel = Tp::OutgoingFileTransferChannelPtr::dynamicCast(pr->object());
+    Tp::OutgoingFileTransferChannelPtr fileTransferChannel = /*Tp::OutgoingFileTransferChannelPtr::dynamicCast(pr->object());*/
+             Tp::OutgoingFileTransferChannelPtr(qobject_cast<Tp::OutgoingFileTransferChannel *>(pr));
     if (fileTransferChannel.isNull()) {
         qDebug() << "ChannelHandler::onOutgoingFileTransferChannelReady: channel invalid";
         return;

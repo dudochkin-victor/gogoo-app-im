@@ -8,9 +8,9 @@
 
 #include "imconversationmodel.h"
 #include "callagent.h"
-#include <TelepathyQt4/AvatarData>
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/ReceivedMessage>
+#include <TelepathyQt/AvatarData>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/ReceivedMessage>
 #include <TelepathyQt4Yell/Models/CustomEventItem>
 #include <TelepathyQt4Yell/Models/CallEventItem>
 #include "filetransferitem.h"
@@ -22,7 +22,7 @@ IMConversationModel::IMConversationModel(const Tp::AccountPtr &account,
     QObject *parent)
     : MergedModel(parent),
       mCallRunningItem(0),
-      mLoggerConversationModel(0),
+//      mLoggerConversationModel(0),//DV
       mSelf(self),
       mAccount(account),
       mNumDuplicatedMessages(0),
@@ -32,30 +32,30 @@ IMConversationModel::IMConversationModel(const Tp::AccountPtr &account,
 {
     // if the contact is null, it means we are in 1-to-1 chat
     if (!contact.isNull()) {
-        mLoggerConversationModel = new Tpl::LoggerConversationModel(account, contact, this);
+//        mLoggerConversationModel = new Tpl::LoggerConversationModel(account, contact, this);//DV
     }
 
-    if (mLoggerConversationModel) {
-        addModel(mLoggerConversationModel);
-        connect(mLoggerConversationModel,
-                SIGNAL(backFetched(int)),
-                SLOT(onBackFetched()));
-        connect(mLoggerConversationModel,
-                SIGNAL(backFetchable()),
-                SIGNAL(backFetchable()));
-        connect(mLoggerConversationModel,
-                SIGNAL(backFetched(int)),
-                SIGNAL(backFetched(int)));
-        connect(mLoggerConversationModel,
-                SIGNAL(backFetchable()),
-                SLOT(continueSearch()));
-        connect(mLoggerConversationModel,
-                SIGNAL(backFetched(int)),
-                SLOT(continueSearch()));
-        // messages in the queue will be reported from both conversation models (logger and session)
-        // so basically we will delete the ones in the logger when loaded
-        mNumDuplicatedMessages = channel->messageQueue().count();
-    }
+//    if (mLoggerConversationModel) {
+//        addModel(mLoggerConversationModel);
+//        connect(mLoggerConversationModel,
+//                SIGNAL(backFetched(int)),
+//                SLOT(onBackFetched()));
+//        connect(mLoggerConversationModel,
+//                SIGNAL(backFetchable()),
+//                SIGNAL(backFetchable()));
+//        connect(mLoggerConversationModel,
+//                SIGNAL(backFetched(int)),
+//                SIGNAL(backFetched(int)));
+//        connect(mLoggerConversationModel,
+//                SIGNAL(backFetchable()),
+//                SLOT(continueSearch()));
+//        connect(mLoggerConversationModel,
+//                SIGNAL(backFetched(int)),
+//                SLOT(continueSearch()));
+//        // messages in the queue will be reported from both conversation models (logger and session)
+//        // so basically we will delete the ones in the logger when loaded
+//        mNumDuplicatedMessages = channel->messageQueue().count();
+//    }//DV
 
     mSessionConversationModel = new Tpy::SessionConversationModel(self, channel, parent);
     if (mSessionConversationModel) {
@@ -167,9 +167,9 @@ QVariant IMConversationModel::data(const QModelIndex &index, int role) const
         return QDate::currentDate().toString(Qt::DefaultLocaleLongDate);
     }
     case FromLoggerRole: {
-        if (mLoggerConversationModel && index.row() < mLoggerConversationModel->rowCount()) {
-            return true;
-        }
+//        if (mLoggerConversationModel && index.row() < mLoggerConversationModel->rowCount()) {
+//            return true;
+//        }//DV
         return false;
     }
     case BubbleColorRole: {
@@ -418,7 +418,7 @@ void IMConversationModel::notifyCallStatusChanged(CallAgent *callAgent, CallAgen
                 !mAccount.isNull() &&
                 !mAccount->connection().isNull() &&
                 !mAccount->connection()->contactManager().isNull()) {
-                endActor = mAccount->connection()->contactManager()->lookupContactByHandle(callAgent->stateReason().actor);
+//                endActor = mAccount->connection()->contactManager()->lookupContactByHandle(callAgent->stateReason().actor);//DV
             }
             Tpy::CallStateChangeReason endReason = (Tpy::CallStateChangeReason) callAgent->stateReason().reason;
             QString detailedEndReason = callAgent->stateReason().DBusReason;
@@ -448,7 +448,7 @@ void IMConversationModel::notifyCallError(Tp::ContactPtr contact, const QString 
     Tp::ContactPtr receiver;
     Tpy::CustomEventItem *item = new Tpy::CustomEventItem(contact, receiver,
         QDateTime::currentDateTime(), message, Tpy::CustomEventItem::CustomEventUserDefined, this);
-    mLoggerConversationModel->addItem(item);
+//    mLoggerConversationModel->addItem(item);//DV
 }
 
 void IMConversationModel::notifyFileTransfer(Tp::ContactPtr contact, FileTransferAgent *agent, Tp::FileTransferChannelPtr channel)
@@ -500,23 +500,23 @@ QString IMConversationModel::contactColor(const QString &id) const
 
 bool IMConversationModel::canFetchMoreBack() const
 {
-    if (mLoggerConversationModel) {
-        return mLoggerConversationModel->canFetchMoreBack();
-    }
+//    if (mLoggerConversationModel) {
+//        return mLoggerConversationModel->canFetchMoreBack();
+//    }//DV
 
     return false;
 }
 
 void IMConversationModel::fetchMoreBack()
 {
-    if (mLoggerConversationModel) {
-        mLoggerConversationModel->fetchMoreBack();
-    }
+//    if (mLoggerConversationModel) {
+//        mLoggerConversationModel->fetchMoreBack();
+//    }//DV
 }
 
 void IMConversationModel::clearLog()
 {
-    mLoggerConversationModel->removeRows(0, mLoggerConversationModel->rowCount());
+//    mLoggerConversationModel->removeRows(0, mLoggerConversationModel->rowCount());//DV
 }
 
 void IMConversationModel::sendMessage(const QString &text)
@@ -668,9 +668,9 @@ void IMConversationModel::continueSearch()
             mSearching = true;
             emit searchingChanged();
         }
-        if (!mLoggerConversationModel->backFetching()) {
-            mLoggerConversationModel->fetchMoreBack();
-        }
+//        if (!mLoggerConversationModel->backFetching()) {
+//            mLoggerConversationModel->fetchMoreBack();
+//        } //DV
     } else {
         mSearching = false;
         emit searchingChanged();
@@ -680,17 +680,17 @@ void IMConversationModel::continueSearch()
 void IMConversationModel::onBackFetched()
 {
     qDebug() << "IMConversationModel::onBackFetched" << mNumDuplicatedMessages;
-    if (mLoggerConversationModel && mNumDuplicatedMessages > 0) {
-        int numToDelete = mNumDuplicatedMessages;
-        if (numToDelete > mLoggerConversationModel->rowCount()) {
-            numToDelete = mLoggerConversationModel->rowCount();
-        }
-        int numRow = mLoggerConversationModel->rowCount() - numToDelete;
-        qDebug() << "before " << mLoggerConversationModel->rowCount();
-        mLoggerConversationModel->removeRows(numRow, numToDelete);
-        qDebug() << "after " << mLoggerConversationModel->rowCount();
-        mNumDuplicatedMessages -= numToDelete;
-    }
+//    if (mLoggerConversationModel && mNumDuplicatedMessages > 0) {
+//        int numToDelete = mNumDuplicatedMessages;
+//        if (numToDelete > mLoggerConversationModel->rowCount()) {
+//            numToDelete = mLoggerConversationModel->rowCount();
+//        }
+//        int numRow = mLoggerConversationModel->rowCount() - numToDelete;
+//        qDebug() << "before " << mLoggerConversationModel->rowCount();
+//        mLoggerConversationModel->removeRows(numRow, numToDelete);
+//        qDebug() << "after " << mLoggerConversationModel->rowCount();
+//        mNumDuplicatedMessages -= numToDelete;
+//    }//DV
 }
 
 int IMConversationModel::numPendingMessages() const

@@ -7,11 +7,12 @@
  */
 
 #include "farstreamchannel.h"
-#include <TelepathyQt4/Connection>
+#include <TelepathyQt/Connection>
 #include <TelepathyQt4Yell/Farstream/Channel>
 #include <QtGstQmlSink/qmlvideosurfacegstsink.h>
 #include <gst/farsight/fs-conference-iface.h>
 #include <gst/farsight/fs-utils.h>
+#include <gst/gstvalue.h>
 
 QmlPainterVideoSurface *FarstreamChannel::mIncomingSurface = 0;
 QmlPainterVideoSurface *FarstreamChannel::mOutgoingSurface = 0;
@@ -290,7 +291,7 @@ void FarstreamChannel::initAudioInput()
         return;
     }
     gst_object_ref(mGstAudioInput);
-    gst_object_sink(mGstAudioInput);
+    //gst_object_sink(mGstAudioInput); //DV
 
     GstElement *source = 0;
     source = addElementToBin(mGstAudioInput, source, AUDIO_SOURCE_ELEMENT);
@@ -417,7 +418,7 @@ void FarstreamChannel::initAudioOutput()
         return;
     }
     gst_object_ref(mGstAudioOutput);
-    gst_object_sink(mGstAudioOutput);
+    //gst_object_sink(mGstAudioOutput); //DV
 
     GstElement *source = 0;
     if (strcmp(AUDIO_SINK_ELEMENT, "pulsesink")) {
@@ -512,7 +513,7 @@ void FarstreamChannel::initVideoInput()
         return;
     }
     gst_object_ref(mGstVideoInput);
-    gst_object_sink(mGstVideoInput);
+    //gst_object_sink(mGstVideoInput);//DV
 
     GstElement *element = 0;
     GstElement *source = 0;
@@ -532,7 +533,8 @@ void FarstreamChannel::initVideoInput()
             "width", G_TYPE_INT, 320,
             "height", G_TYPE_INT, 240,
             "framerate", GST_TYPE_FRACTION, 15, 1,
-            "format", GST_TYPE_FOURCC, GST_MAKE_FOURCC('I','4','2','0'),
+//            "format", GST_TYPE_FOURCC, GST_MAKE_FOURCC('I','4','2','0'),
+            "format", G_TYPE_STRING, "I420",
             NULL);
         /*
         GstCaps *caps = gst_caps_new_simple(
@@ -644,7 +646,7 @@ void FarstreamChannel::initVideoOutput()
         return;
     }
     gst_object_ref(mGstVideoOutput);
-    gst_object_sink(mGstVideoOutput);
+    //gst_object_sink(mGstVideoOutput);//DV
 
     GstElement *source = 0;
 

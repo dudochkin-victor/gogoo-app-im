@@ -10,7 +10,7 @@
 #define ADDCONTACTHELPER_H
 
 #include <QObject>
-#include <TelepathyQt4/Account>
+#include <TelepathyQt/Account>
 #include <TelepathyQt4Yell/Models/AccountsModelItem>
 
 class AddContactHelper : public QObject

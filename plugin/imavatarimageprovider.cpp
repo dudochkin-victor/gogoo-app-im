@@ -7,7 +7,7 @@
  */
 
 #include "imavatarimageprovider.h"
-#include <TelepathyQt4/AccountManager>
+#include <TelepathyQt/AccountManager>
 
 IMAvatarImageProvider::IMAvatarImageProvider(const Tp::AccountManagerPtr &am) :
     Tpy::AvatarImageProvider(am)

@@ -16,7 +16,7 @@
 #include "../telepathy-qml-lib/telepathymanager.h"
 #include "../telepathy-qml-lib/improtocolsmodel.h"
 
-#include <TelepathyQt4/Account>
+#include <TelepathyQt/Account>
 
 class McaActions;
 

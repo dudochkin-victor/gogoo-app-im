@@ -12,15 +12,15 @@
 #include <glib-object.h>
 #include <gst/farsight/fs-element-added-notifier.h>
 #include <gst/farsight/fs-conference-iface.h>
-#include <TelepathyQt4/Channel>
-#include <TelepathyQt4/PendingReady>
-#include <TelepathyQt4/PendingChannelRequest>
-#include <TelepathyQt4/ChannelRequest>
-#include <TelepathyQt4/PendingChannel>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/ReferencedHandles>
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/ReferencedHandles>
+#include <TelepathyQt/Channel>
+#include <TelepathyQt/PendingReady>
+#include <TelepathyQt/PendingChannelRequest>
+#include <TelepathyQt/ChannelRequest>
+#include <TelepathyQt/PendingChannel>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/ReferencedHandles>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/ReferencedHandles>
 #include <TelepathyQt4Yell/Farstream/Channel>
 #include <QDebug>
 #include <QLatin1String>
@@ -97,10 +97,10 @@ void CallAgent::call(bool withVideo)
 
     // call is done through the Channel Dispatcher
     QVariantMap request;
-    request.insert(TELEPATHY_INTERFACE_CHANNEL ".ChannelType",
+    request.insert(TP_QT_IFACE_CHANNEL + ".ChannelType",
                    TP_QT4_YELL_IFACE_CHANNEL_TYPE_CALL);
-    request.insert(TELEPATHY_INTERFACE_CHANNEL ".TargetHandleType", Tp::HandleTypeContact);
-    request.insert(TELEPATHY_INTERFACE_CHANNEL ".TargetHandle", mContact->handle()[0]);
+    request.insert(TP_QT_IFACE_CHANNEL + ".TargetHandleType", Tp::HandleTypeContact);
+    request.insert(TP_QT_IFACE_CHANNEL + ".TargetHandle", mContact->handle()[0]);
     request.insert(TP_QT4_YELL_IFACE_CHANNEL_TYPE_CALL + QLatin1String(".InitialAudio"), true);
     emit audioSentChanged();
     if (withVideo) {
@@ -942,16 +942,16 @@ void CallAgent::onChannelInvalidated(Tp::DBusProxy *, const QString &errorName, 
     qDebug() << "CallAgent::onChannelInvalidated: channel became invalid:" <<
         errorName << "-" << errorMessage;
 
-    if (errorName == TELEPATHY_ERROR_TERMINATED) {
+    if (errorName == TP_QT_ERROR_TERMINATED) {
         setCallStatus(CallStatusNoCall);
         endCall();
-    } else if (errorName == TELEPATHY_ERROR_NO_ANSWER) {
+    } else if (errorName == TP_QT_ERROR_NO_ANSWER) {
         setCallStatus(CallStatusNoCall);
         endCall();
-    } else if (errorName == TELEPATHY_ERROR_BUSY) {
+    } else if (errorName == TP_QT_ERROR_BUSY) {
         setCallStatus(CallStatusNoCall);
         endCall();
-    } else if (errorName == TELEPATHY_ERROR_CANCELLED) {
+    } else if (errorName == TP_QT_ERROR_CANCELLED) {
         if (callStatus() == CallStatusIncomingCall) {
             int initialVideo = mCallChannel->immutableProperties().value("InitialVideo",0).toInt();
             if (initialVideo) {

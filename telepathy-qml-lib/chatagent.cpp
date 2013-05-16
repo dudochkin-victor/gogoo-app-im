@@ -7,16 +7,16 @@
  */
 
 #include "chatagent.h"
-#include <TelepathyQt4/Channel>
-#include <TelepathyQt4/PendingReady>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/ChannelRequest>
-#include <TelepathyQt4/PendingChannelRequest>
-#include <TelepathyQt4/PendingChannel>
-#include <TelepathyQt4/PendingContacts>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/ContactManager>
-#include <TelepathyQt4/ReceivedMessage>
+#include <TelepathyQt/Channel>
+#include <TelepathyQt/PendingReady>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/ChannelRequest>
+#include <TelepathyQt/PendingChannelRequest>
+#include <TelepathyQt/PendingChannel>
+#include <TelepathyQt/PendingContacts>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/ContactManager>
+#include <TelepathyQt/ReceivedMessage>
 #include <QDebug>
 
 ChatAgent::ChatAgent(const Tp::AccountPtr &account, const Tp::ContactPtr &contact, QObject *parent)
@@ -102,11 +102,11 @@ void ChatAgent::startChat()
     qDebug() << "ChatAgent::startChat: contact=" << mContact->id();
 
     QVariantMap request;
-    request.insert(QLatin1String(TELEPATHY_INTERFACE_CHANNEL ".ChannelType"),
-                   QLatin1String(TELEPATHY_INTERFACE_CHANNEL_TYPE_TEXT));
-    request.insert(QLatin1String(TELEPATHY_INTERFACE_CHANNEL ".TargetHandleType"),
+    request.insert(TP_QT_IFACE_CHANNEL + QLatin1String(".ChannelType"),
+                   QLatin1String(TP_QT_IFACE_CHANNEL_TYPE_TEXT));
+    request.insert(TP_QT_IFACE_CHANNEL + QLatin1String(".TargetHandleType"),
                    (uint) Tp::HandleTypeContact);
-    request.insert(QLatin1String(TELEPATHY_INTERFACE_CHANNEL ".TargetHandle"),
+    request.insert(TP_QT_IFACE_CHANNEL + QLatin1String(".TargetHandle"),
                    mContact->handle()[0]);
     mPendingChannelRequest = mAccount->ensureChannel(
                 request,

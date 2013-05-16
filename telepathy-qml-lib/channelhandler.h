@@ -10,14 +10,14 @@
 #define CHANNELHANDLER_H
 
 #include <QObject>
-#include <TelepathyQt4/AbstractClientHandler>
-#include <TelepathyQt4/AbstractClientApprover>
-#include <TelepathyQt4/Types>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/IncomingFileTransferChannel>
-#include <TelepathyQt4/OutgoingFileTransferChannel>
-#include <TelepathyQt4/ChannelRequest>
+#include <TelepathyQt/AbstractClientHandler>
+#include <TelepathyQt/AbstractClientApprover>
+#include <TelepathyQt/Types>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/IncomingFileTransferChannel>
+#include <TelepathyQt/OutgoingFileTransferChannel>
+#include <TelepathyQt/ChannelRequest>
 #include <TelepathyQt4Yell/CallChannel>
 
 class ChannelHandler : public QObject,

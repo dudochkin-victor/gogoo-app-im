@@ -10,9 +10,9 @@
 #define CALLAGENT_H
 
 #include <QAbstractListModel>
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/Contact>
-#include <TelepathyQt4/Types>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/Contact>
+#include <TelepathyQt/Types>
 #include <TelepathyQt4Yell/Farstream/Types>
 #include <TelepathyQt4Yell/CallChannel>
 #include <QtGstQmlSink/qmlgstvideoitem.h>

@@ -2,8 +2,8 @@
 #define SERVERAUTHAGENT_H
 
 #include <QObject>
-#include <TelepathyQt4/Account>
-#include <TelepathyQt4/ChannelInterfaceSASLAuthenticationInterface>
+#include <TelepathyQt/Account>
+#include <TelepathyQt/ChannelInterfaceSASLAuthenticationInterface>
 #include <TelepathyQt4Yell/ChannelInterfaceCredentialsStorageInterface>
 
 class ServerAuthAgent : public QObject

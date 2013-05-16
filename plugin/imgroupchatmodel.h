@@ -12,7 +12,7 @@
 #include "imgroupchatmodelitem.h"
 
 #include <QAbstractListModel>
-#include <TelepathyQt4/TextChannel>
+#include <TelepathyQt/TextChannel>
 
 
 class IMGroupChatModel : public QAbstractListModel

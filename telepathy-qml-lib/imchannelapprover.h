@@ -9,11 +9,11 @@
 #ifndef IMCHANNELAPPROVER_H
 #define IMCHANNELAPPROVER_H
 
-#include <TelepathyQt4/AbstractClientApprover>
-#include <TelepathyQt4/ChannelDispatchOperation>
-#include <TelepathyQt4/PendingOperation>
-#include <TelepathyQt4/TextChannel>
-#include <TelepathyQt4/IncomingFileTransferChannel>
+#include <TelepathyQt/AbstractClientApprover>
+#include <TelepathyQt/ChannelDispatchOperation>
+#include <TelepathyQt/PendingOperation>
+#include <TelepathyQt/TextChannel>
+#include <TelepathyQt/IncomingFileTransferChannel>
 #include <TelepathyQt4Yell/CallChannel>
 
 class IMChannelApprover : public QObject, public Tp::AbstractClientApprover
